@@ -1,10 +1,6 @@
 namespace CalendarEvent;
 
-public class Alert
+public abstract class Alert
 {
-    
-    public void LaunchAlert(string message)
-    {
-        Console.WriteLine(message);
-    }
+    public abstract void Trigger(object? sender, MessageArgs arg);
 }

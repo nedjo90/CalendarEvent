@@ -6,10 +6,7 @@ public class Calendar
     public Month Month { get; private set; }
     public Day Day { get; private set; }
     public int DayNumber { get; private set; }
-
-    public event Action<string> OnNewDay;
-    public event Action<string> OnNewMonth;
-    public event Action<string> OnNewYear;
+    public event EventHandler<MessageArgs> DailyMessage;
     
 
     public Calendar()
@@ -37,9 +34,7 @@ public class Calendar
         {
             Day++;
         }
-        if (OnNewDay != null)
-            OnNewDay($"Hello, {Day,-12}{DayNumber,-5}{Month,-10}{Year}");
-
+        OnDailyMessage();
     }
 
     public void NextMonth()
@@ -53,14 +48,15 @@ public class Calendar
         {
             Month++;
         }
-        if (OnNewMonth != null)
-            OnNewMonth($"It's the first day of {Month}");
     }
     public void NextYear()
     {
         Year++;
-        if (OnNewYear != null)
-            OnNewYear("Happy New Year !");
+    }
+
+    public virtual void OnDailyMessage()
+    {
+        DailyMessage?.Invoke(this, new MessageArgs(Year, Month, Day, DayNumber));
     }
 
     public override string ToString()
