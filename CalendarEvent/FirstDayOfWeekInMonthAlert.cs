@@ -8,7 +8,7 @@ public class FirstDayOfWeekInMonthAlert : Alert
     {
         this.Day = day;
     }
-    public override void Trigger(object? sender, MessageArgs arg)
+    public override void Trigger(object? sender, CalendarArgs arg)
     {
         if (arg.DayNumber <= 7 && arg.Day == Day)
             Console.Write($" It's the first {Day} of {arg.Month}");

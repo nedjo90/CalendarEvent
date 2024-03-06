@@ -32,11 +32,25 @@ class Program
         HolidayAlert holidayAlert = new HolidayAlert(listOfPublicHolidays);
         FirstDayOfWeekInMonthAlert firstWednesday = new FirstDayOfWeekInMonthAlert(Day.Wednesday);
         FirstDayOfWeekInMonthAlert firstSunday = new FirstDayOfWeekInMonthAlert(Day.Sunday);
-        cal.DailyMessage += (sender, messageArgs) => daily.Trigger(sender, messageArgs);
-        cal.DailyMessage += (sender, messageArgs) => holidayAlert.Trigger(sender, messageArgs); 
-        cal.DailyMessage += (sender, messageArgs) => birthdayAlert.Trigger(sender, messageArgs); 
-        cal.DailyMessage += (sender, messageArgs) => firstWednesday.Trigger(sender, messageArgs);
-        cal.DailyMessage += (sender, messageArgs) => firstSunday.Trigger(sender, messageArgs);
+
+        List<Alert> listOfAlert = 
+            [
+                daily,
+                holidayAlert,
+                birthdayAlert,
+                firstWednesday,
+                firstSunday
+            ];
+        foreach (Alert alert in listOfAlert)
+        {
+            cal.DailyMessage += alert.Trigger;
+        }
+        
+        // cal.DailyMessage += daily.Trigger;
+        // cal.DailyMessage += holidayAlert.Trigger; 
+        // cal.DailyMessage += birthdayAlert.Trigger; 
+        // cal.DailyMessage += firstWednesday.Trigger;
+        // cal.DailyMessage += firstSunday.Trigger;
         
         for (int i = 0; i < 1000; i++)
         {

@@ -12,7 +12,7 @@ public class BirthdayAlert : Alert
         ListOfPerson = listOfPerson;
     }
     
-    public override void Trigger(object? sender, MessageArgs arg)
+    public override void Trigger(object? sender, CalendarArgs arg)
     {
         string toDay = $"{arg.DayNumber:D2}/{((int)arg.Month + 1):D2}/{arg.Year:D4}";
         if (DateTime.TryParseExact(toDay, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None,

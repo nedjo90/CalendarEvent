@@ -6,7 +6,7 @@ public class Calendar
     public Month Month { get; private set; }
     public Day Day { get; private set; }
     public int DayNumber { get; private set; }
-    public event EventHandler<MessageArgs> DailyMessage;
+    public event EventHandler<CalendarArgs> DailyMessage;
     
 
     public Calendar()
@@ -56,7 +56,7 @@ public class Calendar
 
     public virtual void OnDailyMessage()
     {
-        DailyMessage?.Invoke(this, new MessageArgs(Year, Month, Day, DayNumber));
+        DailyMessage?.Invoke(this, new CalendarArgs(Year, Month, Day, DayNumber));
     }
 
     public override string ToString()

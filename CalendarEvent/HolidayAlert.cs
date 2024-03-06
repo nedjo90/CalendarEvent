@@ -10,7 +10,7 @@ public class HolidayAlert : Alert
     {
         _listOfPublicHolidays = publicHolidays;
     }
-    public override void Trigger(object? sender, MessageArgs arg)
+    public override void Trigger(object? sender, CalendarArgs arg)
     {
             foreach (PublicHolidays holiday in _listOfPublicHolidays)
             {
